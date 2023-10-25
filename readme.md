@@ -395,6 +395,7 @@ just to allow the port 1104.
 To add a client to PiVPN, simply use ```pivpn -a```
 
 ![](./images/media/image30.png)
+
 The configs will be stored in the directory it displays and in
 /etc/wireguard/configs
 
