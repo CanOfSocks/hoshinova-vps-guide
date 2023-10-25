@@ -1,0 +1,122 @@
+# hoshinova configuration file
+# Copy this file to config.toml and update it as needed.
+
+[ytarchive]
+executable_path = "ytarchive"
+working_directory = "temp"
+args = [
+  "--vp9",
+  "--threads", "4", "--write-thumbnail", "--write-description",
+  "-c", "/app/cookies.txt", 
+  "--thumbnail", "--add-metadata",
+  "--retry-stream", "30",
+  "--no-frag-files", 
+  "--output", "[%(upload_date)s] %(title)s - %(channel)s (%(id)s)/[%(upload_date)s] %(title)s - %(channel)s (%(id)s)"
+]
+quality = "best"
+delay_start = "1s"
+
+[scraper.rss]
+poll_interval = "300s"
+ignore_older_than = "24h"
+
+[notifier.discord]
+webhook_url = "https://discord.com/api/webhooks/xxxxxxxx/yyyyyyyy"
+notify_on = ["waiting", "recording", "done", "failed"]
+
+# A web interface to view and manage tasks.
+# Optional, remove this section to disable.
+[webserver]
+bind_address = "0.0.0.0:1104"
+
+[[channel]]
+id = "UCoSrY_IQQVpmIRZ9Xf-y93g"
+name = "Gawr Gura"
+filters = [".*?"]
+outpath = "./videos/Gawr Gura Ch. hololive-EN"
+
+[[channel]]
+id = "UCgmPnx-EEeOrZSg5Tiw7ZRQ"
+name = "Hakos Baelz"
+filters = [".*?"]
+outpath = "./videos/Hakos Baelz Ch. hololive-EN"
+
+[[channel]]
+id = "UCO_aKKYxn4tvrqPjcTzZ6EQ"
+name = "Ceres Fauna"
+filters = [".*?"]
+outpath = "./videos/Ceres Fauna Ch. hololive-EN"
+
+[[channel]]
+id = "UCmbs8T6MWqUHP1tIQvSgKrg"
+name = "Ouro Kronii"
+filters = [".*?"]
+outpath = "./videos/Ouro Kronii Ch. hololive-EN"
+
+[[channel]]
+id = "UC3n5uGu18FoCy23ggWWp8tA"
+name = "Nanashi Mumei"
+filters = [".*?"]
+outpath = "./videos/Nanashi Mumei Ch. hololive-EN"
+
+[[channel]]
+id = "UC8rcEBzJSleTkf_-agPM20g"
+name = "IRyS"
+filters = [".*?"]
+outpath = "./videos/IRyS Ch. hololive-EN"
+
+[[channel]]
+id = "UCL_qhgtOy0dy1Agp8vkySQg"
+name = "Mori Calliope"
+filters = [".*?"]
+outpath = "./videos/Mori Calliope Ch. hololive-EN"
+
+[[channel]]
+id = "UCMwGHR0BTZuLsmjY_NT5Pwg"
+name = "Ninomae Ina'nis"
+filters = [".*?"]
+outpath = "./videos/Ninomae Ina'nis Ch. hololive-EN"
+
+[[channel]]
+id = "UCyl1z3jo3XHR1riLFKG5UAg"
+name = "Watson Amelia"
+filters = [".*?"]
+outpath = "./videos/Watson Amelia Ch. hololive-EN"
+
+[[channel]]
+id = "UCHsx4Hqa-1ORjQTh9TYDhww"
+name = "Takanashi Kiara"
+filters = [".*?"]
+outpath = "./videos/Takanashi Kiara Ch. hololive-EN"
+
+[[channel]]
+id = "UCgnfPPb9JI3e9A4cXHnWbyg"
+name = "Shiori Novella"
+filters = [".*?"]
+outpath = "./videos/Shiori Novella Ch. hololive-EN"
+
+[[channel]]
+id = "UC9p_lqQ0FEDz327Vgf5JwqA"
+name = "Koseki Bijou"
+filters = [".*?"]
+outpath = "./videos/Koseki Bijou Ch. hololive-EN"
+
+[[channel]]
+id = "UC_sFNM0z0MWm9A6WlKPuMMg"
+name = "Nerissa Ravencroft"
+filters = [".*?"]
+outpath = "./videos/Nerissa Ravencroft Ch. hololive-EN"
+
+[[channel]]
+id = "UCt9H_RpQzhxzlyBxFqrdHqA"
+name = "FUWAMOCO"
+filters = [".*?"]
+outpath = "./videos/FUWAMOCO Ch. hololive-EN"
+
+
+# Add more channels...
+# [[channel]]
+# id = "..."
+# name = "..."
+# filters = [...]
+# outpath = "..."

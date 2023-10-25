@@ -1,0 +1,176 @@
+# hoshinova configuration file
+# Copy this file to config.toml and update it as needed.
+
+[ytarchive]
+executable_path = "ytarchive"
+working_directory = "temp"
+args = [
+#  "--vp9", 
+  "--add-metadata", "--threads", "4", "--write-thumbnail", "--write-description",
+  "-c", "/app/cookies.txt", 
+"--retry-stream", "30",
+  "--no-frag-files", 
+  "--output", "[%(upload_date)s] %(title)s - %(channel)s (%(id)s)/[%(upload_date)s] %(title)s - %(channel)s (%(id)s)"
+]
+quality = "best"
+delay_start = "1s"
+
+[scraper.rss]
+poll_interval = "180s"
+ignore_older_than = "24h"
+
+[notifier.discord]
+webhook_url = "https://discord.com/api/webhooks/xxxxxxxxxx/yyyyyyyyyyyyy"
+notify_on = ["waiting", "recording", "done", "failed"]
+
+# A web interface to view and manage tasks.
+# Optional, remove this section to disable.
+[webserver]
+bind_address = "0.0.0.0:1104"
+
+[[channel]]
+id = "UCoSrY_IQQVpmIRZ9Xf-y93g"
+name = "Gawr Gura"
+filters = [".*?"]
+outpath = "./videos/Gawr Gura Ch. hololive-EN"
+
+[[channel]]
+id = "UCgmPnx-EEeOrZSg5Tiw7ZRQ"
+name = "Hakos Baelz"
+filters = ["(?i).asmr|unarchive|karaoke|unarchived|no archive|WATCH-A-LONG|WATCHALONG|watch-along|birthday|offcollab|off-collab|off collab|SINGING."]
+outpath = "./videos/Hakos Baelz Ch. hololive-EN"
+
+[[channel]]
+id = "UCO_aKKYxn4tvrqPjcTzZ6EQ"
+name = "Ceres Fauna"
+filters = ["(?i).asmr|unarchive|karaoke|unarchived|no archive|WATCH-A-LONG|WATCHALONG|watch-along|birthday|offcollab|off-collab|off collab|SINGING."]
+outpath = "./videos/Ceres Fauna Ch. hololive-EN"
+
+[[channel]]
+id = "UCmbs8T6MWqUHP1tIQvSgKrg"
+name = "Ouro Kronii"
+filters = ["(?i).asmr|unarchive|karaoke|unarchived|no archive|WATCH-A-LONG|WATCHALONG|watch-along|birthday|offcollab|off-collab|off collab|SINGING."]
+outpath = "./videos/Ouro Kronii Ch. hololive-EN"
+
+[[channel]]
+id = "UC3n5uGu18FoCy23ggWWp8tA"
+name = "Nanashi Mumei"
+filters = ["(?i).asmr|unarchive|karaoke|unarchived|no archive|WATCH-A-LONG|WATCHALONG|watch-along|birthday|offcollab|off-collab|off collab|SINGING."]
+outpath = "./videos/Nanashi Mumei Ch. hololive-EN"
+
+[[channel]]
+id = "UC8rcEBzJSleTkf_-agPM20g"
+name = "IRyS"
+filters = ["(?i).asmr|unarchive|karaoke|unarchived|no archive|WATCH-A-LONG|WATCHALONG|watch-along|birthday|offcollab|off-collab|off collab|SINGING."]
+outpath = "./videos/IRyS Ch. hololive-EN"
+
+[[channel]]
+id = "UCL_qhgtOy0dy1Agp8vkySQg"
+name = "Mori Calliope"
+filters = ["(?i).asmr|unarchive|karaoke|unarchived|no archive|WATCH-A-LONG|WATCHALONG|watch-along|birthday|offcollab|off-collab|off collab|SINGING."]
+outpath = "./videos/Mori Calliope Ch. hololive-EN"
+
+[[channel]]
+id = "UCMwGHR0BTZuLsmjY_NT5Pwg"
+name = "Ninomae Ina'nis"
+filters = ["(?i).asmr|unarchive|karaoke|unarchived|no archive|WATCH-A-LONG|WATCHALONG|watch-along|birthday|offcollab|off-collab|off collab|SINGING."]
+outpath = "./videos/Ninomae Ina'nis Ch. hololive-EN"
+
+[[channel]]
+id = "UCyl1z3jo3XHR1riLFKG5UAg"
+name = "Watson Amelia"
+filters = ["(?i).asmr|unarchive|karaoke|unarchived|no archive|WATCH-A-LONG|WATCHALONG|watch-along|birthday|offcollab|off-collab|off collab|SINGING."]
+outpath = "./videos/Watson Amelia Ch. hololive-EN"
+
+[[channel]]
+id = "UCHsx4Hqa-1ORjQTh9TYDhww"
+name = "Takanashi Kiara"
+filters = ["(?i).asmr|unarchive|karaoke|unarchived|no archive|WATCH-A-LONG|WATCHALONG|watch-along|birthday|offcollab|off-collab|off collab|SINGING."]
+outpath = "./videos/Takanashi Kiara Ch. hololive-EN"
+
+[[channel]]
+id = "UC8rcEBzJSleTkf_-agPM20g"
+name = "IRyS"
+filters = ["(?i).asmr|unarchive|karaoke|unarchived|no archive|WATCH-A-LONG|WATCHALONG|watch-along|birthday|offcollab|off-collab|off collab|SINGING."]
+outpath = "./videos/IRyS Ch. hololive-EN"
+
+#
+# Description filters
+#
+[[channel]]
+id = "UCgmPnx-EEeOrZSg5Tiw7ZRQ"
+name = "Hakos Baelz"
+filters = ["(?i).gura|UCoSrY_IQQVpmIRZ9Xf-y93g."]
+match_description = true
+outpath = "./videos/Hakos Baelz Ch. hololive-EN"
+
+[[channel]]
+id = "UCO_aKKYxn4tvrqPjcTzZ6EQ"
+name = "Ceres Fauna"
+filters = ["(?i).gura|UCoSrY_IQQVpmIRZ9Xf-y93g."]
+match_description = true
+outpath = "./videos/Ceres Fauna Ch. hololive-EN"
+
+[[channel]]
+id = "UCmbs8T6MWqUHP1tIQvSgKrg"
+name = "Ouro Kronii"
+filters = ["(?i).gura|UCoSrY_IQQVpmIRZ9Xf-y93g."]
+match_description = true
+outpath = "./videos/Ouro Kronii Ch. hololive-EN"
+
+[[channel]]
+id = "UC3n5uGu18FoCy23ggWWp8tA"
+name = "Nanashi Mumei"
+filters = ["(?i).gura|UCoSrY_IQQVpmIRZ9Xf-y93g."]
+match_description = true
+outpath = "./videos/Nanashi Mumei Ch. hololive-EN"
+
+[[channel]]
+id = "UC8rcEBzJSleTkf_-agPM20g"
+name = "IRyS"
+filters = ["(?i).gura|UCoSrY_IQQVpmIRZ9Xf-y93g."]
+match_description = true
+outpath = "./videos/IRyS Ch. hololive-EN"
+
+[[channel]]
+id = "UCL_qhgtOy0dy1Agp8vkySQg"
+name = "Mori Calliope"
+filters = ["(?i).gura|UCoSrY_IQQVpmIRZ9Xf-y93g."]
+match_description = true
+outpath = "./videos/Mori Calliope Ch. hololive-EN"
+
+[[channel]]
+id = "UCMwGHR0BTZuLsmjY_NT5Pwg"
+name = "Ninomae Ina'nis"
+filters = ["(?i).gura|UCoSrY_IQQVpmIRZ9Xf-y93g."]
+match_description = true
+outpath = "./videos/Ninomae Ina'nis Ch. hololive-EN"
+
+[[channel]]
+id = "UCyl1z3jo3XHR1riLFKG5UAg"
+name = "Watson Amelia"
+filters = ["(?i).gura|UCoSrY_IQQVpmIRZ9Xf-y93g."]
+match_description = true
+outpath = "./videos/Watson Amelia Ch. hololive-EN"
+
+[[channel]]
+id = "UCHsx4Hqa-1ORjQTh9TYDhww"
+name = "Takanashi Kiara"
+filters = ["(?i).gura|UCoSrY_IQQVpmIRZ9Xf-y93g."]
+match_description = true
+outpath = "./videos/Takanashi Kiara Ch. hololive-EN"
+
+[[channel]]
+id = "UC8rcEBzJSleTkf_-agPM20g"
+name = "IRyS"
+filters = ["(?i).gura|UCoSrY_IQQVpmIRZ9Xf-y93g."]
+match_description = true
+outpath = "./videos/IRyS Ch. hololive-EN"
+
+
+# Add more channels...
+# [[channel]]
+# id = "..."
+# name = "..."
+# filters = [...]
+# outpath = "..."
