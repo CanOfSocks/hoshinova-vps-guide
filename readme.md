@@ -528,7 +528,7 @@ Enter the script below and save:
 #!/bin/bash
 ```
 #!/bin/bash
-inotifywait --recursive --monitor --format "%w%f" --includei '.*\.mp4$' --includei '.*\.mp4$' \
+inotifywait --recursive --monitor --format "%w%f" --includei '.*\.mp4$' --includei '.*\.mkv$' \
 --event modify,moved_to,create,move_self /mnt/hoshiblock/hoshinova/Done  \
 | while read changed; do
     echo "File ${changed} moved to Done directory"
