@@ -260,7 +260,7 @@ instead of a password, and then disabling passwords for SSH
 authentication. We will also be creating a user specifically for
 hoshinova, which we will use to connect to the server for rsync.
 
-To create the user we will run: useradd -m hoshi
+To create the user we will run: ```useradd -m hoshi```
 
 This will create a user and a home directory for it. We will need the
 home directory for the SSH keys.
@@ -298,7 +298,7 @@ will change some setting for SSH to disable password login. Log back
 into the root account.
 
 First we will edit the dietpi custom configuration to disable its
-changes with nano /etc/ssh/sshd_config.d/dietpi.conf. Use crtl+x, then y
+changes with ```nano /etc/ssh/sshd_config.d/dietpi.conf```. Use crtl+x, then y
 then enter to save.
 
 ![A computer screen with white text Description automatically
@@ -306,14 +306,15 @@ generated](./images/media/image24.png)
 
 Put a hash at the beginning of each line to disable the options
 
-Now we will edit the default settings with nano /etc/ssh/sshd_config
+Now we will edit the default settings with ```nano /etc/ssh/sshd_config```
 
 We will add two lines near the top of the file:
 
+```
 PasswordAuthentication no
 
 PubkeyAuthentication yes
-
+```
 ![A computer screen with white text Description automatically
 generated](./images/media/image25.png)
 
@@ -332,23 +333,23 @@ First we will install UFW, a firewall for linux to make sure we don't
 accidentally expose our hoshinova port or any other service we may run
 on the VPS in the future.
 
-Simply run apt update && apt install ufw
+Simply run ```apt update && apt install ufw```
 
 Now we will set two rules initially. First run ufw default deny to deny
-any incoming connection except ones allowed. Then allow ssh using ufw
-allow ssh OR ufw allow 22. If you use a custom port for SSH, use your
+any incoming connection except ones allowed. Then allow ssh using ```ufw
+allow ssh``` OR ```ufw allow 22```. If you use a custom port for SSH, use your
 SSH port.
 
 ![](./images/media/image26.png)
 
-We will now start the firewall with ufw enable. We can check the status
+We will now start the firewall with ```ufw enable```. We can check the status
 with ufw status verbose
 
 ![A screen shot of a computer Description automatically
 generated](./images/media/image27.png)
 
 Despite it saying it is enabled on startup, I've found it not
-necessarily the case, so enable the service with systemctl enable ufw
+necessarily the case, so enable the service with ```systemctl enable ufw```
 
 ![](./images/media/image28.png)
 
@@ -361,8 +362,8 @@ also makes use of the VPS connection so you can use it as a VPN for
 anything use you want. We will use PiVPN as it acts as a very basic
 manager for our VPN.
 
-To install PiVPN, use the install script from their website: curl -L
-https://install.pivpn.io \| bash
+To install PiVPN, use the install script from their website: ```curl -L
+https://install.pivpn.io | bash```
 
 Some of you may have notices PiVPN is also included in the dietPi
 software list. We won't be using that as it resists using UFW. Since
@@ -385,13 +386,13 @@ the VPS has rebooted.
 I found that the default ufw rules don't properly allow machines
 connected to wireguard to properly access the hoshinova web-ui. I ended
 up setting a rule to allow all on the wireguard interface (wg0) since
-I'd be using the connection for more than just hoshinova. I used ufw
-allow in on wg0 to do this. If you only want hoshinova, it may be best
+I'd be using the connection for more than just hoshinova. I used ```ufw
+allow in on wg0``` to do this. If you only want hoshinova, it may be best
 just to allow the port 1104.
 
 ![](./images/media/image29.png)
 
-To add a client to PiVPN, simply use pivpn -a
+To add a client to PiVPN, simply use ```pivpn -a```
 
 ![](./images/media/image30.png)
 The configs will be stored in the directory it displays and in
@@ -404,7 +405,7 @@ storage the buyvm VPS has, which for these services is the best option.
 Now that we are setting up the storage for hoshinova, we will need to
 mount the block storage.
 
-In the console, type dietpi-drive_manager. This will pull up the drives
+In the console, type ```dietpi-drive_manager```. This will pull up the drives
 manager utility that comes with dietpi.
 
 ![A screenshot of a computer Description automatically
@@ -432,7 +433,7 @@ Now we will create a couple of folders for the hoshinova container to
 use.
 
 We will run:
-
+```
 mkdir -p /mnt/hoshiblock/hoshinova/temp
 
 mkdir -p /mnt/hoshiblock/hoshinova/config
@@ -440,13 +441,13 @@ mkdir -p /mnt/hoshiblock/hoshinova/config
 mkdir -p /mnt/hoshiblock/hoshinova/Done
 
 mkdir -p /mnt/hoshiblock/hoshinova/scripts
-
+```
 We will need to change the owner of these folders and set the required
 permissions.
 
-To set the owner run: chown -R hoshi /mnt/hoshiblock/hoshinova/
+To set the owner run: ```chown -R hoshi /mnt/hoshiblock/hoshinova/```
 
-To set the permissions run: chmod -R 770 /mnt/hoshiblock/hoshinova/
+To set the permissions run: ```chmod -R 770 /mnt/hoshiblock/hoshinova/```
 
 The permissions allow the owner and group, i.e. the hoshi user and the
 docker group, full access to the files and folders in the directory.
@@ -455,8 +456,8 @@ I've had issues in the past with docker creating files not respecting
 the owner or group, which make them unable to be accessed by docker or
 for the user to use. To solve this problem, I run a cronjob regularly as
 root to ensure the permissions are always set every 10 minutes. It
-simply runs the two commands above. Run the cronjob editor with crontab
--e.
+simply runs the two commands above. Run the cronjob editor with ```crontab
+-e```.
 
 ![](./images/media/image35.png)
 
@@ -466,29 +467,23 @@ through quickly, simply re-run the commands where you have issues.
 
 # Setting up the docker container
 
-Switch to the hoshi user with su hoshi.
+Switch to the hoshi user with ```su hoshi```.
 
 We will need to create a config file for hoshinova, as the mapping we
 use later will create a folder if the file does not exist. Create a file
-with nano /mnt/hoshiblock/hoshinova/config/config.toml and import a
-config file. You can use my config "Here" to get all holo en. You can
-use my pervious config at home "Here" for examples of how to use
+with ```nano /mnt/hoshiblock/hoshinova/config/config.toml``` and import a
+config file. You can use my config <https://github.com/CanOfSocks/hoshinova-vps-guide/blob/main/example-config-vps.toml> to get all holo en. You can
+use my pervious config at home <https://github.com/CanOfSocks/hoshinova-vps-guide/blob/main/example-config-home.toml> for examples of how to use
 description filters too. Save the config.
 
 The docker command also includes a cookies file. Similarly, create it
-with nano /mnt/hoshiblock/hoshinova/config/cookies.txt and paste in your
+with ```nano /mnt/hoshiblock/hoshinova/config/cookies.txt``` and paste in your
 cookies.txt file.
 
 Then run the docker command:
-
-docker run -d \--name=\'Hoshinova\' \--net=\'host\' \--cpus=\".75\" -e
-TZ=\"Australia/Sydney\" -e HOST_CONTAINERNAME=\"Hoshinova\" -v
-\'/mnt/hoshiblock/hoshinova/config/config.toml\':\'/app/config.toml\':\'rw\'
--v \'/mnt/hoshiblock/hoshinova/temp/\':\'/app/temp\':\'rw\' -v
-\'/mnt/hoshiblock/hoshinova/Done/\':\'/app/videos\':\'rw\' -v
-\'/mnt/hoshiblock/hoshinova/config/cookies.txt\':\'/app/cookies.txt\':\'rw\'
-\--restart always \'ghcr.io/holoarchivists/hoshinova:main\'
-
+```
+docker run -d --name='Hoshinova' --net='host' --cpus=".75" -e TZ="Australia/Sydney" -e HOST_CONTAINERNAME="Hoshinova" -v '/mnt/hoshiblock/hoshinova/config/config.toml':'/app/config.toml':'rw' -v '/mnt/hoshiblock/hoshinova/temp/':'/app/temp':'rw' -v '/mnt/hoshiblock/hoshinova/Done/':'/app/videos':'rw' -v '/mnt/hoshiblock/hoshinova/config/cookies.txt':'/app/cookies.txt':'rw' --restart always 'ghcr.io/holoarchivists/hoshinova:main'
+```
 We set the network to "host" because docker has a nasty habit of
 bypassing UFW as it uses iptables, where the rules for docker proceed
 the ufw rules. The simplest way is to use the host system settings and
@@ -497,7 +492,7 @@ ufw then works fine.
 The cpu usage is also limited to 75% so that the system does not get
 bogged down when hoshinova muxes streams. This won't greatly affect the
 performance of hoshinova with the whole system's limits. Remember, this
-is about getting it done *eventually,* not quickly.
+is about getting it done *eventually*, not quickly.
 
 At this point, you should be able to connect to the server with a
 wireguard client. Once there, enter the IP address of the gateway for
@@ -514,8 +509,7 @@ generated](./images/media/image37.png)
 For the mover we will use a filesystem monitor to monitor when files
 enter our done directory, specifically inotify-tools' inofitywait.
 
-We first install inotify tools with: apt update && apt install
-inotify-tools.
+We first install inotify tools with: ```apt update && apt install inotify-tools.```
 
 ## The script
 
@@ -525,35 +519,25 @@ store our scripts for monitoring the output folder for finished files,
 then moving across the thumbnail file and description file that
 hoshinova does not move across natively.
 
-Switch to the root user with su root and enter the password for your
-root user. Now we will use nano
-/mnt/hoshiblock/hoshinova/scripts/moveFolder.sh.
+Switch to the root user with ```su root``` and enter the password for your
+root user. Now we will use ```nano /mnt/hoshiblock/hoshinova/scripts/moveFolder.sh```.
 
 Enter the script below and save:
 
 #!/bin/bash
-
-inotifywait \--recursive \--monitor \--format \"%w%f\" \--includei
-\'.\*\\.mp4\$\' \--includei \'.\*\\.mp4\$\' \\
-
-\--event modify,moved_to,create,move_self /mnt/hoshiblock/hoshinova/Done
-\\
-
-\| while read changed; do
-
-echo \"File \${changed} moved to Done directory\"
-
-folder=\"\${changed%.\*}\"
-
-name=\$(basename \"\${folder}\")
-
-echo \"Moving \${name} to \${folder}\"
-
-mv \"/mnt/hoshiblock/hoshinova/temp/\${name}\" \"\${folder}\" && \\
-
-mv \"\${changed}\" \"\${folder}\"
-
-done
+```
+#!/bin/bash
+inotifywait --recursive --monitor --format "%w%f" --includei '.*\.mp4$' --includei '.*\.mp4$' \
+--event modify,moved_to,create,move_self /mnt/hoshiblock/hoshinova/Done  \
+| while read changed; do
+    echo "File ${changed} moved to Done directory"
+    folder="${changed%.*}"
+    name=$(basename "${folder}")
+    echo "Moving ${name} to ${folder}"
+    mv "/mnt/hoshiblock/hoshinova/temp/${name}" "${folder}" && \
+    mv "${changed}" "${folder}"
+done 
+```
 
 This script will detect when a mp4 file has been moved to or
 created/copied to the done folder that hoshinova points to, and moves
@@ -563,56 +547,40 @@ moving the final file, so it is pretty clean. However, it is likely that
 if failures occur the old temp files from previous attempts may be
 brought across to the final folder.
 
-You could add \--includei \'.\*\\.mkv\$\' to the inotifywait command and
+You could add ```--includei '.*\.mkv$'``` to the inotifywait command and
 it should detect mkv files as well (I only tried this when writing the
 guide and am waiting for results).
 
-Make the script executable with chmod +x
-/mnt/hoshiblock/hoshinova/scripts/moveFolder.sh.
+Make the script executable with ```chmod +x /mnt/hoshiblock/hoshinova/scripts/moveFolder.sh```.
 
 ## Running as a service
 
 Now we will setup a service to run our mover script on startup and to
 restart the script if it ever fails/finishes for some reason.
 
-Create a file with nano
-/mnt/hoshiblock/hoshinova/scripts/moveFolder.service
+Create a file with ```nano /mnt/hoshiblock/hoshinova/scripts/moveFolder.service```
 
 And enter:
 
-\[Unit\]
-
+```
+[Unit]
 Description=Hoshinova Folder Mover
-
 After=docker.service
-
 StartLimitIntervalSec=0
-
-\[Service\]
-
+[Service]
 Type=simple
-
 Restart=always
-
 RestartSec=1
-
 User=hoshi
-
 ExecStart=/mnt/hoshiblock/hoshinova/scripts/moveFolder.sh
-
-\[Install\]
-
-WantedBy=multi-user.target
+```
 
 This will run the script after the docker service starts and will
 restart the script if it fails.
 
-Make the service executable with chmod +x
-/mnt/hoshiblock/hoshinova/scripts/moveFolder.service
+Make the service executable with ```chmod +x /mnt/hoshiblock/hoshinova/scripts/moveFolder.service```
 
-Now we will make a soft-link into the services folder with ln -s
-/mnt/hoshiblock/hoshinova/scripts/moveFolder.service
-/etc/systemd/system/hoshiMoveFolder.service.
+Now we will make a soft-link into the services folder with ```ln -s /mnt/hoshiblock/hoshinova/scripts/moveFolder.service /etc/systemd/system/hoshiMoveFolder.service```.
 
 ![](./images/media/image38.png)
 
@@ -627,11 +595,11 @@ orphaned files in the temp directory.
 Switch to the hoshi user with su hoshi and edit the cronjobs with
 crontab -e. Add the following two commands to the crontab:
 
-0 0 \* \* \* find /mnt/hoshiblock/hoshinova/temp/ \--min-depth 1 -mtime
-+5 -delete
+```
+0 0 \* \* \* find /mnt/hoshiblock/hoshinova/temp/ --min-depth 1 -mtime +5 -delete
 
-5 4 \* \* 2 find /mnt/hoshiblock/hoshinova/Done/ \--min-depth 2 -mtime
-+14 -delete
+5 4 \* \* 2 find /mnt/hoshiblock/hoshinova/Done/ --min-depth 2 -mtime +14 -delete
+```
 
 These commands will find any files or folders that have not been
 modified in 5 days for the temp folder, and 14 days for the Done folder.
@@ -646,7 +614,7 @@ We will want to add a swap file for some extra ram capacity for when we
 have many streams muxing at once. We want to use the SSD storage on the
 boot disk on the VPS.
 
-We will check the current disk usage with df -h:
+We will check the current disk usage with ```df -h```:
 
 ![A black screen with white text Description automatically
 generated](./images/media/image41.png)
@@ -686,21 +654,17 @@ userscripts plugin.
 
 The script is as follows:
 
+```
 #!/bin/bash
-
-if pidof -x -o \$\$ \$0 \> /dev/null
-
+if pidof -x -o $$ $0 > /dev/null
 then
-
-exit
-
+    exit
 fi
 
-rsync -arv \--partial \--delay-updates \--remove-source-files
-hoshi@10.1.1.225:/mnt/hoshiblock/hoshinova/scripts/Done/\*
-/mnt/user/HoloArchive
 
+rsync -arv --partial --delay-updates --remove-source-files   hoshi@10.1.1.225:/mnt/hoshiblock/hoshinova/scripts/Done/* /mnt/user/HoloArchive
 chown -R archive /mnt/user/HoloArchive
+```
 
 As I run this multiple times a night, the if statement at the start
 checks if the script is already running, and will exit if it is.
@@ -731,86 +695,55 @@ hoshinova, to keep videos that you want regardless of availability.
 
 The checking availability plugin is:
 
+```
 #!/bin/bash
+file="${1}"
+vidTrim="${file##*(}"
+vidID="${vidTrim%)*}"
 
-file=\"\${1}\"
+echo "Checking status of ${vidID}"
 
-vidTrim=\"\${file##\*(}\"
+response=$(curl -s -I -o /dev/null -w "%{http_code}" "https://www.youtube.com/oembed?format=json&url=https://www.youtube.com/watch?v=${vidID}")
 
-vidID=\"\${vidTrim%)\*}\"
+publicCode="200"
 
-echo \"Checking status of \${vidID}\"
+memberFlag="Members Only"
+titleFilters="${memberFlag}|asmr|unarchive|karaoke|unarchived|no archive|WATCH-A-LONG|WATCHALONG|watch-along|birthday|offcollab|off-collab|off collab|SINGING|Gawr Gura Ch. hololive-EN"
+descriptionFilters="gura|UCoSrY_IQQVpmIRZ9Xf-y93g"
 
-response=\$(curl -s -I -o /dev/null -w \"%{http_code}\"
-\"https://www.youtube.com/oembed?format=json&url=https://www.youtube.com/watch?v=\${vidID}\")
-
-publicCode=\"200\"
-
-memberFlag=\"Members Only\"
-
-titleFilters=\"\${memberFlag}\|asmr\|unarchive\|karaoke\|unarchived\|no
-archive\|WATCH-A-LONG\|WATCHALONG\|watch-along\|birthday\|offcollab\|off-collab\|off
-collab\|SINGING\|Gawr Gura Ch. hololive-EN\"
-
-descriptionFilters=\"gura\|UCoSrY_IQQVpmIRZ9Xf-y93g\"
-
-if \[ \"\$response\" = \"\$publicCode\" \]; then
-
-descriptionFile=\"\${file%.\*}.description\"
-
-if ! basename \"\${file}\" \| grep -Eiq \"\${titleFilters}\" && ( ! \[
--f \"\${descriptionFile}\" \] \|\| ! grep -Eiq
-\"\${descriptionFilters}\" \"\${descriptionFile}\" ); then
-
-#Ensure no previous output can poison checks
-
-rm -f /tmp/archiveCheck
-
-curl -s -o /tmp/archiveCheck
-\"https://www.youtube.com/watch?v=\${vidID}\"
-
-if ! grep -Eiq \"\${memberFlag}\" /tmp/archiveCheck; then
-
-echo \"Video with ID \${vidID} is public and doesn\'t match filters,
-removing\...\"
-
-rm -f \"\$file\"
-
+if [ "$response" = "$publicCode" ]; then
+	descriptionFile="${file%.*}.description"
+	if ! basename "${file}" | grep -Eiq "${titleFilters}" && ( ! [ -f "${descriptionFile}" ] || ! grep -Eiq "${descriptionFilters}" "${descriptionFile}" ); then
+		#Ensure no previous output can poison checks
+		rm -f /tmp/archiveCheck
+		curl -s -o /tmp/archiveCheck "https://www.youtube.com/watch?v=${vidID}" 
+		
+		if ! grep -Eiq "${memberFlag}" /tmp/archiveCheck; then			
+			echo "Video with ID ${vidID} is public and doesn't match filters, removing..."
+			rm -f "$file"
+		else
+			echo "Video with ID ${vidID} is a membership stream, keeping..."
+		fi
+		rm -f /tmp/archiveCheck
+	else
+		echo "Video with ID ${vidID} is public, but matches filters, keeping..."
+	fi
 else
-
-echo \"Video with ID \${vidID} is a membership stream, keeping\...\"
-
-fi
-
-rm -f /tmp/archiveCheck
-
-else
-
-echo \"Video with ID \${vidID} is public, but matches filters,
-keeping\...\"
-
-fi
-
-else
-
-echo \"Video with ID \${vidID} is not publicly accessible (Code:
-\${response}) or matches filters, keeping\...\"
-
+    echo "Video with ID ${vidID} is not publicly accessible (Code: ${response}) or matches filters, keeping..."
 fi
 
 sleep 5
+```
 
 Additionally, I set this to only run on files modified between 30 and 60
 days old, which I ran with a find script that also deletes any empty
 folders.
-
+```
 #!/bin/bash
-
-find /mnt/user/HoloArchive/ -mindepth 1 -type f -not -path \'\*/.\*\'
--mtime +30 -mtime -60 -exec
-/mnt/user/appdata/HoloArchive/Scripts/checkPublic.sh \"{}\" \\;
-
+find /mnt/user/HoloArchive/ -mindepth 1 -type f -not -path '*/.*' -mtime +30 -mtime -60 -exec /mnt/user/appdata/HoloArchive/Scripts/checkPublic.sh "{}" \;
 find /mnt/user/HoloArchive/ -mindepth 2 -empty -type d -delete
+
+```
 
 Switch out the locations and times as you desire for your setup. I have
 set this to run weekly, but it has not run through full testing due to
