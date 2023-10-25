@@ -168,8 +168,7 @@ options. If your keyboard layout is not US, choose the appropriate one.
 ![A screenshot of a computer Description automatically
 generated](./images/media/image9.png)![A screenshot of a computer Description
 automatically
-generated](./images/media/image10.png){width="2.3483705161854767in"
-height="1.2535389326334208in"}
+generated](./images/media/image10.png)
 
 ![A screenshot of a computer Description automatically
 generated](./images/media/image11.png)![A screenshot of a computer Description
