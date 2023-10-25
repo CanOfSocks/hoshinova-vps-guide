@@ -77,8 +77,7 @@ local network raspberry pi.
 
 For the VPS, we will download the native for PC Bios version.
 
-![](./images/media/image1.png){width="6.268055555555556in"
-height="4.9534722222222225in"}
+![](./images/media/image1.png)
 
 # Setting up the VPS
 
@@ -86,20 +85,17 @@ After you have purchased your kvm slice and block storage, you can head
 over to the "Stallion" manager.
 
 ![A screenshot of a computer Description automatically
-generated](./images/media/image2.png){width="6.268055555555556in"
-height="2.0791666666666666in"}
+generated](./images/media/image2.png)
 
 Head over to the "Storage Volumes" tab and click the cog. Select attach
 to virtual server and select the kvm slice you just purchased
 
-![](./images/media/image3.png){width="6.2659722222222225in"
-height="2.0319444444444446in"}
+![](./images/media/image3.png)
 
 Go back to the virtual servers tab and click manage, you will be granted
 a similar screen
 
-![](./images/media/image4.png){width="6.268055555555556in"
-height="3.904861111111111in"}
+![](./images/media/image4.png)
 
 If you check the volumes tab you can see the attached storage volume. Go
 to the CD-ROM Upload ISO. For the DietPi installer, we will need to
@@ -110,8 +106,7 @@ be done once so expiring files are fine. I've had success using
 <https://filelu.com> and getting the link from the final download button
 after uploading.
 
-![](./images/media/image5.png){width="6.268055555555556in"
-height="2.1840277777777777in"}
+![](./images/media/image5.png)
 
 After it has finished uploading, you will want to go to Power State
 Boot. Then go to Console Web based console, to bring up a virtual
@@ -122,15 +117,13 @@ console for the install process.
 Installation is pretty simple, on the initial screen select install
 dietpi
 
-![](./images/media/image6.png){width="6.268055555555556in"
-height="3.511111111111111in"}
+![](./images/media/image6.png)
 
 Ensure, that you install DietPi on the kvm slice storage and not the
 block storage. Mine may be named differently to yours.
 
 ![A screenshot of a computer Description automatically
-generated](./images/media/image7.png){width="6.268055555555556in"
-height="2.1166666666666667in"}
+generated](./images/media/image7.png)
 
 Let DietPi install and it will turn off the machine. After that happens,
 boot it again.
@@ -158,8 +151,7 @@ Disable the serial/uart console since we won't need it.
 Once the DietPi-Software page appears, we will first want to go down and
 press enter on the DietPi-config
 
-![](./images/media/image8.png){width="6.268055555555556in"
-height="3.076388888888889in"}
+![](./images/media/image8.png)
 
 **If you are accessing via virtual console and not ssh**
 
@@ -174,18 +166,15 @@ English US. Go up to the one that just says English (US) with no extra
 options. If your keyboard layout is not US, choose the appropriate one.
 
 ![A screenshot of a computer Description automatically
-generated](./images/media/image9.png){width="2.0833891076115485in"
-height="1.8945778652668417in"}![A screenshot of a computer Description
+generated](./images/media/image9.png)![A screenshot of a computer Description
 automatically
 generated](./images/media/image10.png){width="2.3483705161854767in"
 height="1.2535389326334208in"}
 
 ![A screenshot of a computer Description automatically
-generated](./images/media/image11.png){width="3.706116579177603in"
-height="1.8132294400699913in"}![A screenshot of a computer Description
+generated](./images/media/image11.png)![A screenshot of a computer Description
 automatically
-generated](./images/media/image12.png){width="1.6518985126859143in"
-height="1.9059241032370953in"}
+generated](./images/media/image12.png)
 
 Then go to security options passwords and go through the dialog options
 like the first time.
@@ -195,21 +184,18 @@ like the first time.
 Go to the network adapters menu
 
 ![A screen shot of a computer Description automatically
-generated](./images/media/image13.png){width="4.010976596675415in"
-height="2.333659230096238in"}
+generated](./images/media/image13.png)
 
 Ethernet
 
 ![A screen shot of a computer Description automatically
-generated](./images/media/image14.png){width="4.938188976377953in"
-height="1.7294083552055992in"}
+generated](./images/media/image14.png)
 
 And press enter in change mode to set it to static. The buyvm VPSes have
 a static IP address. Then press enter on Copy Current address settings
 to static
 
-![](./images/media/image15.png){width="6.268055555555556in"
-height="2.754166666666667in"}
+![](./images/media/image15.png)
 
 Change the DNS options as you choose.
 
@@ -234,12 +220,10 @@ come up with a \*, indicating it will install. If searched for, hit
 confirm to return to the menu. We will not need compose for this setup.
 
 ![A screenshot of a computer program Description automatically
-generated](./images/media/image16.png){width="6.268055555555556in"
-height="2.564583333333333in"}
+generated](./images/media/image16.png)
 
 ![A screenshot of a computer Description automatically
-generated](./images/media/image17.png){width="6.268055555555556in"
-height="2.1631944444444446in"}
+generated](./images/media/image17.png)
 
 Next, find Pi-hole, press space to mark it and confirm. It will prompt
 you to also install unbound, press yes. Since we already set a static
@@ -248,19 +232,14 @@ IP, we will hit skip on the prompt to set one.
 Then go down to the SSH server, press enter and choose OpenSSH. We will
 use this for SFTP later when we set up rsync
 
-![](./images/media/image18.png){width="6.268055555555556in"
-height="2.467361111111111in"}
-
+![](./images/media/image18.png)
 ![A screenshot of a computer Description automatically
-generated](./images/media/image19.png){width="6.268055555555556in"
-height="2.94375in"}
-
+generated](./images/media/image19.png)
 Then scroll down to Install and hit enter. You should be presented with
 the following screen:
 
 ![A screenshot of a computer error Description automatically
-generated](./images/media/image20.png){width="6.268055555555556in"
-height="3.2555555555555555in"}
+generated](./images/media/image20.png)
 
 Press ok if it looks similar the programs will install. It may prompt
 you for a webserver for Pi-Hole, so choose one that best suite your
@@ -292,8 +271,7 @@ Finally, we add the hoshi user to the docker group so docker can have
 access to the folders.
 
 ![A screen shot of a computer screen Description automatically
-generated](./images/media/image21.png){width="5.709130577427821in"
-height="1.8127526246719161in"}
+generated](./images/media/image21.png)
 
 If you have open-SSH installed on your local machine, you will be able
 to user ssh-copy-id and it will easily copy over your SSH key to the
@@ -303,8 +281,7 @@ VPS. For more information and options with ssh keys, go to
 If you don't have ssh-copy-id or are on a windows machine this might
 help you: <https://gist.github.com/andrezrv/8132876>
 
-![](./images/media/image22.png){width="6.268055555555556in"
-height="1.4659722222222222in"}
+![](./images/media/image22.png)
 
 When we try to SSH into the server, we will not have to enter the
 password.
@@ -312,8 +289,7 @@ password.
 Logout and repeat for the hoshi user.
 
 ![A screen shot of a computer code Description automatically
-generated](./images/media/image23.png){width="6.268055555555556in"
-height="1.525in"}
+generated](./images/media/image23.png)
 
 Once again, check you can log in without being prompted for a password.
 
@@ -326,8 +302,7 @@ changes with nano /etc/ssh/sshd_config.d/dietpi.conf. Use crtl+x, then y
 then enter to save.
 
 ![A computer screen with white text Description automatically
-generated](./images/media/image24.png){width="5.594530839895013in"
-height="1.2640649606299212in"}
+generated](./images/media/image24.png)
 
 Put a hash at the beginning of each line to disable the options
 
@@ -340,8 +315,7 @@ PasswordAuthentication no
 PubkeyAuthentication yes
 
 ![A computer screen with white text Description automatically
-generated](./images/media/image25.png){width="6.268055555555556in"
-height="1.663888888888889in"}
+generated](./images/media/image25.png)
 
 PubkeyAuthentication is set to yes by default, but we will make sure it
 is explicitly set just in case.
@@ -365,21 +339,18 @@ any incoming connection except ones allowed. Then allow ssh using ufw
 allow ssh OR ufw allow 22. If you use a custom port for SSH, use your
 SSH port.
 
-![](./images/media/image26.png){width="5.9695833333333335in"
-height="2.0523698600174978in"}
+![](./images/media/image26.png)
 
 We will now start the firewall with ufw enable. We can check the status
 with ufw status verbose
 
 ![A screen shot of a computer Description automatically
-generated](./images/media/image27.png){width="6.268055555555556in"
-height="2.595138888888889in"}
+generated](./images/media/image27.png)
 
 Despite it saying it is enabled on startup, I've found it not
 necessarily the case, so enable the service with systemctl enable ufw
 
-![](./images/media/image28.png){width="6.268055555555556in"
-height="0.4625in"}
+![](./images/media/image28.png)
 
 ## Installing wireguard
 
@@ -418,14 +389,11 @@ I'd be using the connection for more than just hoshinova. I used ufw
 allow in on wg0 to do this. If you only want hoshinova, it may be best
 just to allow the port 1104.
 
-![](./images/media/image29.png){width="6.268055555555556in"
-height="6.110416666666667in"}
+![](./images/media/image29.png)
 
 To add a client to PiVPN, simply use pivpn -a
 
-![](./images/media/image30.png){width="6.268055555555556in"
-height="2.7270833333333333in"}
-
+![](./images/media/image30.png)
 The configs will be stored in the directory it displays and in
 /etc/wireguard/configs
 
@@ -440,30 +408,25 @@ In the console, type dietpi-drive_manager. This will pull up the drives
 manager utility that comes with dietpi.
 
 ![A screenshot of a computer Description automatically
-generated](./images/media/image31.png){width="6.268055555555556in"
-height="2.26875in"}
-
+generated](./images/media/image31.png)
 Here we can see our block storage drive. It may be different for you. If
 you didn't unmount the iso file, it will also be visible. Hit enter with
 the block storage device selected.
 
 ![A screenshot of a computer Description automatically
-generated](./images/media/image32.png){width="6.268055555555556in"
-height="1.3666666666666667in"}
+generated](./images/media/image32.png)
 
 We will format the block storage device. Set the partition table and
 format to what works best for you. The default options will work fine
 for this setup.
 
 ![A screenshot of a computer Description automatically
-generated](./images/media/image33.png){width="6.268055555555556in"
-height="1.2715277777777778in"}
+generated](./images/media/image33.png)
 
 Give it a name that you'll remember.
 
 ![A screenshot of a computer Description automatically
-generated](./images/media/image34.png){width="6.268055555555556in"
-height="1.1194444444444445in"}
+generated](./images/media/image34.png)
 
 Now we will create a couple of folders for the hoshinova container to
 use.
@@ -495,8 +458,7 @@ root to ensure the permissions are always set every 10 minutes. It
 simply runs the two commands above. Run the cronjob editor with crontab
 -e.
 
-![](./images/media/image35.png){width="6.268055555555556in"
-height="3.795138888888889in"}
+![](./images/media/image35.png)
 
 Save the cronjob. In regards to permissions, we will assume that this
 script will take care of them for the scripts going forward. If you move
@@ -542,12 +504,10 @@ wireguard client. Once there, enter the IP address of the gateway for
 the wireguard server in your browser at port 1104. Below is mu current
 instance.
 
-![](./images/media/image36.png){width="6.268055555555556in"
-height="3.182638888888889in"}
+![](./images/media/image36.png)
 
 ![A screenshot of a computer Description automatically
-generated](./images/media/image37.png){width="6.268055555555556in"
-height="3.597916666666667in"}
+generated](./images/media/image37.png)
 
 # Setting up the folder mover
 
@@ -654,13 +614,10 @@ Now we will make a soft-link into the services folder with ln -s
 /mnt/hoshiblock/hoshinova/scripts/moveFolder.service
 /etc/systemd/system/hoshiMoveFolder.service.
 
-![](./images/media/image38.png){width="6.268055555555556in"
-height="0.7152777777777778in"}
+![](./images/media/image38.png)
 
 ![A computer screen with white text Description automatically
-generated](./images/media/image39.png){width="6.268055555555556in"
-height="1.6868055555555554in"}
-
+generated](./images/media/image39.png)
 # Setting up clean ups
 
 Sometimes things go wrong and the stream records can have an error. This
@@ -682,9 +639,7 @@ You can change these values as you like, but anything sitting in either
 folder for that long is almost certainly not going to move to where it
 needs to.
 
-![](./images/media/image40.png){width="6.268055555555556in"
-height="0.7506944444444444in"}
-
+![](./images/media/image40.png)
 # Adding a swap file for dietPi
 
 We will want to add a swap file for some extra ram capacity for when we
@@ -694,31 +649,25 @@ boot disk on the VPS.
 We will check the current disk usage with df -h:
 
 ![A black screen with white text Description automatically
-generated](./images/media/image41.png){width="6.268055555555556in"
-height="1.2159722222222222in"}
-
+generated](./images/media/image41.png)
 Here we can see we have about 16GB available on the boot disk, in my
 case /dev/sda. On my VPS I have a 4GB swap file setup, but you could
 double that if you want.
 
 When logged into the root account, go to dietpi-drive_manager.
 
-![](./images/media/image42.png){width="6.268055555555556in"
-height="2.279861111111111in"}
+![](./images/media/image42.png)
 
 Go into the settings of the boot disk and edit the swap file. There
 should already be a swap file if you have less than 2GB of ram in your
 VPS
 
 ![A screenshot of a computer Description automatically
-generated](./images/media/image43.png){width="6.268055555555556in"
-height="2.8819444444444446in"}
-
+generated](./images/media/image43.png)
 Change the value to 4096
 
 ![A screenshot of a computer Description automatically
-generated](./images/media/image44.png){width="6.268055555555556in"
-height="1.8486111111111112in"}
+generated](./images/media/image44.png)
 
 Let the manager reconfigure things.
 
