@@ -265,9 +265,9 @@ To create the user we will run: ```useradd -m hoshi```
 This will create a user and a home directory for it. We will need the
 home directory for the SSH keys.
 
-Then we use passwd hoshi to set a password, make a decent password.
+Then we use ```passwd hoshi``` to set a password, make a decent password.
 
-Finally, we add the hoshi user to the docker group so docker can have
+Finally, we add the hoshi user to the docker group with ```usermod -a -G docker hoshi``` so docker can have
 access to the folders.
 
 ![A screen shot of a computer screen Description automatically
@@ -321,7 +321,7 @@ generated](./images/media/image25.png)
 PubkeyAuthentication is set to yes by default, but we will make sure it
 is explicitly set just in case.
 
-Finally, we will run systemctl restart ssh sshd to restart the SSH
+Finally, we will run ```systemctl restart ssh sshd``` to restart the SSH
 service. I haven't had it stop my current session before, but it may for
 you.
 
