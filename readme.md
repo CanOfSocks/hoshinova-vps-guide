@@ -596,9 +596,9 @@ Switch to the hoshi user with su hoshi and edit the cronjobs with
 crontab -e. Add the following two commands to the crontab:
 
 ```
-0 0 \* \* \* find /mnt/hoshiblock/hoshinova/temp/ --min-depth 1 -mtime +5 -delete
+0 0 * * * find /mnt/hoshiblock/hoshinova/temp/ --min-depth 1 -mtime +5 -delete
 
-5 4 \* \* 2 find /mnt/hoshiblock/hoshinova/Done/ --min-depth 2 -mtime +14 -delete
+5 4 * * 2 find /mnt/hoshiblock/hoshinova/Done/ --min-depth 2 -mtime +14 -delete
 ```
 
 These commands will find any files or folders that have not been
